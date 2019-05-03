@@ -23,6 +23,7 @@
     "Andrew N Golovkov @AndorCS"
   ],
   "dependencies": {
+    "big-integer": "1.6.43",
     "tiny-lru": "6.0.1"
   },
   "devDependencies": {

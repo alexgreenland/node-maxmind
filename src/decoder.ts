@@ -1,13 +1,9 @@
 import assert from 'assert';
 // @ts-ignore
+import bigInt from 'big-integer';
 import lru from 'tiny-lru';
 import { OpenOpts } from '.';
 import utils from './utils';
-
-assert(
-  typeof BigInt !== 'undefined',
-  'Apparently you are using old version of node. Please upgrade to node 0.10 or above.'
-);
 
 const types = [
   'extended', //  0
@@ -329,13 +325,11 @@ export default class Decoder {
     const buffer = Buffer.alloc(size);
     this.db.copy(buffer, 0, offset, offset + size);
 
-    let integer = BigInt(0);
+    let integer = bigInt(0);
 
     const numberOfLongs = size / 4;
     for (let i = 0; i < numberOfLongs; i++) {
-      integer =
-        integer * BigInt(4294967296) +
-        BigInt(buffer.readUInt32BE(i << 2, true));
+      integer = integer.times(bigInt('4294967296')).plus(bigInt(buffer.readUInt32BE(i << 2, true)));
     }
 
     return integer.toString();
