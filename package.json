@@ -1,5 +1,5 @@
 {
-  "name": "maxmind",
+  "name": "@epi/maxmind",
   "version": "3.0.3",
   "homepage": "https://github.com/runk/node-maxmind",
   "description": "IP lookup using Maxmind databases",
